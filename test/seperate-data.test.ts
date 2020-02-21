@@ -5,7 +5,6 @@ const createChildData = () => ({
   id: `${Math.random()}`,
   key1: 'value1',
   key2: 'value2',
-  key3: 'value3',
   arrayItem: [1, 2, 3, 4],
 });
 
