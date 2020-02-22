@@ -6,7 +6,7 @@ import { SeparatedObject, UserData } from '../helpers';
 export function separateData(
   unmodifiedData: UserData,
   uniqueId: string,
-  isInline = false
+  isReturnNull = false
 ): SeparatedObject {
   if (isDbArray(unmodifiedData, uniqueId)) {
     return separateArrayData(unmodifiedData, nestedObj =>
@@ -18,7 +18,7 @@ export function separateData(
       separateData(nestedObj, uniqueId, true)
     );
   }
-  if (!isInline) {
+  if (!isReturnNull) {
     return unmodifiedData;
   }
   return null;

@@ -1,4 +1,4 @@
-import routeScheme from '~/index';
+import routeScheme from '../../src';
 
 export default (data: any) => {
   const schema = routeScheme.dataToSchema(data);

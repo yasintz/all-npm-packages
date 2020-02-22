@@ -1,12 +1,13 @@
-import schemaToData from '~/schema-to-data';
-import { UserData } from '~/helpers';
-import { separateData } from '~/separate-data';
-import dataToSchema from '~/data-to-schema';
+import { UserData } from './helpers';
+import { separateData } from './separate-data';
+import dataToSchema from './data-to-schema';
+import schemaToData from './schema-to-data';
 
 function createModule(uniqueId = 'id') {
   return {
     schemaToData,
-    separateData: (data: UserData) => separateData(data, uniqueId),
+    separateData: (data: UserData, isReturnNull?: boolean) =>
+      separateData(data, uniqueId, isReturnNull),
     dataToSchema: (data: UserData) => dataToSchema(data, uniqueId),
   };
 }
