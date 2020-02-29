@@ -6,16 +6,20 @@ import { SeparatedObject, UserData } from '../helpers';
 export function separateData(
   unmodifiedData: UserData,
   uniqueId: string,
-  isReturnNull = false
+  isReturnNull = false,
+  modifiedData: Record<string, any> = {}
 ): SeparatedObject {
   if (isDbArray(unmodifiedData, uniqueId)) {
-    return separateArrayData(unmodifiedData, nestedObj =>
-      separateData(nestedObj, uniqueId, true)
+    return separateArrayData(unmodifiedData, modifiedData, nestedObj =>
+      separateData(nestedObj, uniqueId, true, modifiedData)
     );
   }
   if (isDbObject(unmodifiedData, uniqueId)) {
-    return separateObjectData(unmodifiedData, uniqueId, nestedObj =>
-      separateData(nestedObj, uniqueId, true)
+    return separateObjectData(
+      unmodifiedData,
+      uniqueId,
+      modifiedData,
+      nestedObj => separateData(nestedObj, uniqueId, true, modifiedData)
     );
   }
   if (!isReturnNull) {

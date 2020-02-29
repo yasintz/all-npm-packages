@@ -11,7 +11,9 @@ export function objectForeach<K extends string, V>(
   obj: Record<K, V>,
   callback: (key: K, value: V) => void
 ) {
-  Object.keys(obj).forEach(key => callback(key as K, obj[key as K]));
+  for (let [key, value] of Object.entries<V>(obj)) {
+    callback(key as K, value);
+  }
 }
 
 export function isDbObject(obj: any, uniqueId: string) {

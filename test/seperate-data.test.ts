@@ -1,24 +1,20 @@
-import _ from 'lodash';
 import createAll from './utils/create-all';
+import createData from './utils/create-data';
 
-const createChildData = () => ({
-  id: `${Math.random()}`,
-  key1: 'value1',
-  key2: 'value2',
-  arrayItem: [1, 2, 3, 4],
+const exampleObject = createData({
+  nestedData: [createData(), createData()],
+  nestedObject: createData({
+    item: createData(),
+    color: 'blue',
+  }),
 });
 
-const exampleParentData = {
-  id: 'parent-data',
-  key1: 'value1',
-  key2: 'value2',
-  key3: 'value3',
-  nestedData: [createChildData(), createChildData()],
-};
-const { reverseData } = createAll(exampleParentData);
+console.log(JSON.stringify(createAll(exampleObject), null, 4));
+
+const { reverseData } = createAll(exampleObject);
 
 describe('Seperate Data', () => {
   it('works', () => {
-    expect(_.isEqual(exampleParentData, reverseData)).toEqual(true);
+    expect(exampleObject).toEqual(reverseData);
   });
 });

@@ -1,8 +1,8 @@
 function separateArrayData(
   unmodifiedArray: Array<any>,
+  modifiedData: any,
   baseSeparateFn: (obj: any) => any
 ) {
-  const modifiedData = {};
   unmodifiedArray.forEach((nestedUnmodifiedData: any) => {
     Object.assign(modifiedData, baseSeparateFn(nestedUnmodifiedData));
   });
