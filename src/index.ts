@@ -1,4 +1,4 @@
-import { UserData } from './helpers';
+import { UserData, Schema } from './helpers';
 import { separateData } from './separate-data';
 import dataToSchema from './data-to-schema';
 import schemaToData from './schema-to-data';
@@ -17,3 +17,4 @@ export function withCustomUniqueId(id: string) {
 }
 
 export default createModule();
+export { Schema };
