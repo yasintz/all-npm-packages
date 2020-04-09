@@ -6,8 +6,7 @@ import schemaToData from './schema-to-data';
 function createModule(uniqueId = 'id') {
   return {
     schemaToData,
-    separateData: (data: UserData, isReturnNull?: boolean) =>
-      separateData(data, uniqueId, isReturnNull),
+    separateData: (data: UserData) => separateData(data, uniqueId),
     dataToSchema: (data: UserData) => dataToSchema(data, uniqueId),
   };
 }

@@ -1,29 +1,33 @@
 import separateArrayData from './array';
 import separateObjectData from './object';
-import { isDbArray, isDbObject } from '../utils';
+import { isDbObject, isArray } from '../utils';
 import { SeparatedObject, UserData } from '../helpers';
+
+function ejectInvalidItemInArray<T>(array: T[], uniqueIdKey: string): T[] {
+  return array.filter(item => {
+    return isDbObject(item, uniqueIdKey) || isArray(item);
+  });
+}
 
 export function separateData(
   unmodifiedData: UserData,
-  uniqueId: string,
-  isReturnNull = false,
+  uniqueIdKey: string,
   modifiedData: Record<string, any> = {}
 ): SeparatedObject {
-  if (isDbArray(unmodifiedData, uniqueId)) {
-    return separateArrayData(unmodifiedData, modifiedData, nestedObj =>
-      separateData(nestedObj, uniqueId, true, modifiedData)
+  if (isArray(unmodifiedData)) {
+    return separateArrayData(
+      ejectInvalidItemInArray(unmodifiedData, uniqueIdKey),
+      modifiedData,
+      nestedObj => separateData(nestedObj, uniqueIdKey, modifiedData)
     );
   }
-  if (isDbObject(unmodifiedData, uniqueId)) {
+  if (isDbObject(unmodifiedData, uniqueIdKey)) {
     return separateObjectData(
       unmodifiedData,
-      uniqueId,
+      uniqueIdKey,
       modifiedData,
-      nestedObj => separateData(nestedObj, uniqueId, true, modifiedData)
+      nestedObj => separateData(nestedObj, uniqueIdKey, modifiedData)
     );
   }
-  if (!isReturnNull) {
-    return unmodifiedData;
-  }
-  return null;
+  return unmodifiedData;
 }

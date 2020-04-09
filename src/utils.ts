@@ -17,27 +17,5 @@ export function objectForeach<K extends string, V>(
 }
 
 export function isDbObject(obj: any, uniqueId: string) {
-  if (isObject(obj) && obj[uniqueId]) {
-    return true;
-  }
-
-  return false;
-}
-
-export function isDbArray<T>(
-  obj: MaybeArray<T>,
-  uniqueId: string
-): obj is Array<T> {
-  // FIXME: remove nested if
-  if (isArray(obj)) {
-    if (
-      obj.filter(
-        item => isDbObject(item, uniqueId) || isDbArray(item, uniqueId)
-      ).length === obj.length
-    ) {
-      return true;
-    }
-  }
-
-  return false;
+  return Boolean(isObject(obj) && obj[uniqueId]);
 }

@@ -1,5 +1,7 @@
 const rn = () => `${Math.random()}`;
+
 let count = 0;
+
 function createData(assignData: any = {}) {
   const data = {
     id: rn(),
@@ -10,4 +12,8 @@ function createData(assignData: any = {}) {
   return data;
 }
 
-export default createData;
+function createArrayData(length: number) {
+  return new Array(length).fill('').map(() => createData());
+}
+
+export { createData, createArrayData };

@@ -1,4 +1,4 @@
-import { objectForeach, isDbObject, isDbArray } from '../utils';
+import { objectForeach } from '../utils';
 
 function separateObjectData(
   unmodifiedData: Record<string, any>,
@@ -11,10 +11,11 @@ function separateObjectData(
   modifiedData[dataId] = modifiedData[dataId] || {};
 
   objectForeach(unmodifiedData, (key, dataField) => {
-    if (isDbObject(dataField, uniqueId) || isDbArray(dataField, uniqueId)) {
-      Object.assign(modifiedData, baseSeparateFn(dataField));
+    const parsedObject = baseSeparateFn(dataField);
+    if (parsedObject === dataField) {
+      modifiedData[dataId][key] = parsedObject;
     } else {
-      modifiedData[dataId][key] = dataField;
+      Object.assign(modifiedData, parsedObject);
     }
   });
 
