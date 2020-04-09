@@ -14,11 +14,9 @@ const exampleObject = createData({
   }),
   isNumber: false,
 });
-const aaa = createAll(exampleObject);
 
-require('fs').writeFileSync('./a.json', JSON.stringify(aaa, null, 4));
+const { reverseData } = createAll(exampleObject);
 
-const { reverseData } = aaa;
 describe('Seperate Data', () => {
   it('works', () => {
     expect(exampleObject).toEqual(reverseData);
