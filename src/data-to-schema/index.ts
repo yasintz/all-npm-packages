@@ -1,9 +1,12 @@
 import arrayDataToScheme from './array';
 import objectDataToScheme from './object';
 import { isArray } from '../utils';
-import { MaybeArray, Schema, UserData } from '../helpers';
+import { MaybeArray, Schema, UserData, Maybe } from '../helpers';
 
-function dataToSchema(data: UserData, uniqueId: string): MaybeArray<Schema> {
+function dataToSchema(
+  data: UserData,
+  uniqueId: string
+): Maybe<MaybeArray<Schema>> {
   if (typeof data !== 'object') {
     return null;
   }

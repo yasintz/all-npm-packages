@@ -1,10 +1,10 @@
 import { objectForeach } from '../utils';
-import { Schema, MaybeArray } from '../helpers';
+import { Schema, MaybeArray, Maybe } from '../helpers';
 
 function objectDataToScheme(
   data: any,
   uniqueId: string,
-  baseFn: (childData: any) => MaybeArray<Schema>
+  baseFn: (childData: any) => Maybe<MaybeArray<Schema>>
 ) {
   const route: Schema = {
     id: data[uniqueId],
