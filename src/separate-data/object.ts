@@ -13,7 +13,7 @@ function separateObjectData(
   objectForeach(unmodifiedData, (key, dataField) => {
     const parsedObject = baseSeparateFn(dataField);
     if (parsedObject === dataField) {
-      modifiedData[dataId][key] = parsedObject;
+      modifiedData[dataId][key] = dataField;
     } else {
       Object.assign(modifiedData, parsedObject);
     }

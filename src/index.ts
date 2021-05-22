@@ -16,4 +16,5 @@ export function withCustomUniqueId(id: string) {
 }
 
 export default createModule();
-export { Schema };
+type Module = ReturnType<typeof createModule>;
+export { Schema, Module };

@@ -6,32 +6,40 @@
   </a>
 </p>
 
-## Install
-
-```sh
-yarn install
-```
-
 ## Usage
 
-```sh
-yarn run start
-```
+```js
+import sc from 'route-schema';
 
-## Run tests
+const data = {
+  id: 'u1',
+  name: 'yasin',
+  schools: [
+    {
+      id: 's1',
+      name: 'MRC',
+    },
+    {
+      id: 's2',
+      name: 'KRT',
+      manager: {
+        id: 'u2',
+        name: 'osman',
+      },
+    },
+  ],
+};
 
-```sh
-yarn run test
 ```
 
 ## Author
 
 👤 **yasintz**
 
-
 ## Show your support
 
 Give a ⭐️ if this project helped you!
 
-***
+---
+
 _This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_

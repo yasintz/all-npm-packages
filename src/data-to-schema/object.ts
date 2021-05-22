@@ -13,7 +13,7 @@ function objectDataToScheme(
   objectForeach(data, (key, value) => {
     if (typeof value === 'object') {
       const result = baseFn(value);
-      if (result !== null && route.props) {
+      if (result !== null) {
         route.props[key] = result;
       }
     }
